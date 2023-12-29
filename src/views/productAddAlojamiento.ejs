@@ -7,166 +7,160 @@
       background-color: #f8f9fa;
       display: flex;
       flex-direction: column;
+      background-image: url(/images/jong-marshes-79mNMAvSORg-unsplash.jpg);
     ">
         <%- include('./partials/header') %>
 
-            <main class="flex-grow-1 d-flex justify-content-center align-items-center" style="
-        background-image: url('/images/jong-marshes-79mNMAvSORg-unsplash.jpg');
-        background-size: cover;
-        background-position: center;
-      ">
+            <main class="flex-grow-1 d-flex justify-content-center align-items-center">
                 <!-- Contenedor del formulario -->
                 <div class="container" style="margin-top: 20px; margin-bottom: 20px">
                     <div class="row">
-                        <div class="col-12 col-lg-10 mx-auto">
+                        <div class="col-12 col-lg-8 mx-auto">
                             <div class="card border rounded">
                                 <div class="card-header bg-white d-flex justify-content-between">
-                                  
+
                                     <a class="link-dark " href="/dashboard">Volver al dasboard</a>
                                     <h4 class="card-title">Nuevo Alojamiento</h4>
 
                                 </div>
                                 <div class="card-body">
-                                    <form action="" method="POST" enctype="multipart/form-data" class="row" >
-                                        <div class="col-12 col-md-4 d-flex flex-column">
-                                            <img src="/images/default.webp" alt="" class="img-fluid">
-                                    </div>
+                                    <form action="" method="POST" enctype="multipart/form-data" class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="col-12 mb-2">
+                                                <label for="hotel" class="form-label">Hotel</label>
+                                                <select
+                                                    class="form-select <%= locals.errors && (errors.hotel && 'is-invalid') %>"
+                                                    aria-label="Default select example" name="hotel" id="hotel">
+                                                    <option selected hidden value="">Seleccione...</option>
+                                                    <% hotels.forEach(hotel=> { %>
+                                                        <option value="<%= hotel.id %>" <%=locals.old &&
+                                                            (old.hotel===hotel.id && 'selected' )%> >
+                                                            <%= hotel.name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                <small id="nameErrors" class="text-danger fs-6">
+                                                    <%= locals.errors && (errors.hotel && errors.hotel.msg) %>
+                                                </small>
+                                            </div>
+                                            <!-- estadia = stay -->
+                                            <div class="col-12 mb-2">
+
+                                                <label for="stay" class="form-label">Estadia</label>
+                                                <input type="text"
+                                                    class="form-control <%= locals.errors ? (errors.stay ? 'is-invalid' : 'is-valid') : '' %>"
+                                                    id="productName" name="stay"
+                                                    value="<%= locals.old && (old.stay && old.stay) %>" />
+                                                <small id="nameErrors" class="text-danger fs-6">
+                                                    <%= locals.errors && (errors.stay && errors.stay.msg) %>
+                                                </small>
+                                            </div>
+                                            <!-- pasajeros = passengers -->
+                                            <div class="mb-3">
+                                                <label for="passengers" class="form-label">Pasajeros</label>
+                                                <input type="number"
+                                                    class="form-control <%= locals.errors ? (errors.passengers ? 'is-invalid' : 'is-valid') : '' %>"
+                                                    id="passengers" name="passengers" min="0" max="100"
+                                                    value="<%= locals.old && (old.passengers && old.passengers) %>" />
+                                                <small id="passengersErrors" class="text-danger fs-6">
+                                                    <%= locals.errors && (errors.passengers && errors.passengers.msg) %>
+                                                </small>
+                                            </div>
+                                            <!-- precio -->
+                                            <div class="mb-3">
+                                                <label for="price" class="form-label">Precio</label>
+                                                <input type="number"
+                                                    class="form-control <%= locals.errors ? (errors.price ? 'is-invalid' : 'is-valid') : '' %>"
+                                                    id="productPrice" name="price" min="0" step="0.01"
+                                                    value="<%= locals.old && (old.price && old.price) %>" />
+                                                <small id="priceErrors" class="text-danger fs-6">
+                                                    <%= locals.errors && (errors.price && errors.price.msg) %>
+                                                </small>
+                                            </div>
+                                        </div>
                                         <div class="col-12 col-md-4">
-                                        <div class="col-12 mb-2">
-                                            <label for="hotel" class="form-label">Hotel</label>
-                                            <select
-                                                class="form-select <%= locals.errors && (errors.hotel && 'is-invalid') %>"
-                                                aria-label="Default select example" name="hotel" id="hotel">
-                                                <option selected hidden value="">Seleccione...</option>
-                                                <% hotels.forEach(hotel=> { %>
-                                                    <option value="<%= hotel.id %>" <%=locals.old &&
-                                                        (old.hotel===hotel.id && 'selected' )%> >
-                                                        <%= hotel.name %>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
-                                            <small id="nameErrors" class="text-danger fs-6">
-                                                <%= locals.errors && (errors.hotel && errors.hotel.msg) %>
-                                            </small>
-                                        </div>
-                                          <!-- estadia = stay -->
-                                          <div class="col-12 mb-2">
+                                            <label class="form-label">Servicios</label>
 
-                                          <label for="stay" class="form-label">Estadia</label>
-                                            <input type="text"
-                                                class="form-control <%= locals.errors ? (errors.stay ? 'is-invalid' : 'is-valid') : '' %>"
-                                                id="productName" name="stay"
-                                                value="<%= locals.old && (old.stay && old.stay) %>"/>
-                                            <small id="nameErrors" class="text-danger fs-6">
-                                                <%= locals.errors && (errors.stay && errors.stay.msg) %>
-                                            </small>
-                                        </div>
-                                          <!-- pasajeros = passengers -->
-                                          <div class="mb-3">
-                                            <label for="passengers" class="form-label">Pasajeros</label>
-                                            <input type="number"
-                                                class="form-control <%= locals.errors ? (errors.passengers ? 'is-invalid' : 'is-valid') : '' %>"
-                                                id="passengers" name="passengers" min="0" max="100"
-                                                value="<%= locals.old && (old.passengers && old.passengers) %>" />
-                                            <small id="passengersErrors" class="text-danger fs-6">
-                                                <%= locals.errors && (errors.passengers && errors.passengers.msg) %>
-                                            </small>
-                                        </div>
-                                          <!-- precio -->
-                                          <div class="mb-3">
-                                            <label for="price" class="form-label">Precio</label>
-                                            <input type="number"
-                                                class="form-control <%= locals.errors ? (errors.price ? 'is-invalid' : 'is-valid') : '' %>"
-                                                id="productPrice" name="price" min="0" step="0.01"
-                                                value="<%= locals.old && (old.price && old.price) %>" />
-                                            <small id="priceErrors" class="text-danger fs-6">
-                                                <%= locals.errors && (errors.price && errors.price.msg) %>
-                                            </small>
-                                        </div>
-                                      </div>
-                                      <div class="col-12 col-md-4">
-                                        <label class="form-label">Sercicios</label>
+                                            <!-- checkboxs wifi -->
+                                            <div class="col-12 mb-2">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="wifi" name="wifi">
+                                                    <label class="form-check-label" for="wifi">
+                                                        Wifi en habitación
+                                                    </label>
+                                                </div>
 
-                                        <!-- checkboxs wifi -->
-                                        <div class="col-12 mb-2">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="wifi" name="wifi">
-                                                <label class="form-check-label" for="wifi">
-                                                    Wifi en habitación
-                                                </label>
-                                              </div>
-                                              
-                                        </div>
+                                            </div>
                                             <!-- desayuno -->
                                             <div class="col-12 mb-2">
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="breackfast" name="breackfast">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="breackfast" name="breackfast">
                                                     <label class="form-check-label" for="breackfast">
                                                         Desayuno incluído
                                                     </label>
-                                                  </div>
-                                                  
+                                                </div>
+
                                             </div>
-                                        <!-- estacionamiento -->
-                                        <div class="col-12 mb-2">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="parking" name="parking">
-                                                <label class="form-check-label" for="parking">
-                                                    Estacionamiento gratuito
-                                                </label>
-                                              </div>
-                                              
-                                        </div>
-                                        <!-- registro web -->
-                                        <div class="col-12 mb-2">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="checkInWeb" name="checkInWeb">
-                                                <label class="form-check-label" for="checkInWeb">
-                                                    CheckIn Web
-                                                </label>
-                                              </div>
-                                              
-                                        </div>
-                                         <!-- agencia -->
-                                         <div class="mb-2">
-                                            <label for="agency" class="form-label">Agencia</label>
-                                            <select
-                                                class="form-select <%= locals.errors && (errors.hotelId && 'is-invalid') %>"
-                                                aria-label="Default select example" name="agency" id="agency">
-                                                <option selected hidden value="">Seleccione...</option>
-                                                <% agencies.forEach(agency=> { %>
-                                                    <option value="<%= agency.id %>" <%=locals.old &&
-                                                        (old.agency == agency.id && 'selected' )%> >
-                                                        <%= agency.name %>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
-                                            <small id="nameErrors" class="text-danger fs-6">
-                                                <%= locals.errors && (errors.agency && errors.agency.msg) %>
+                                            <!-- estacionamiento -->
+                                            <div class="col-12 mb-2">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="parking" name="parking">
+                                                    <label class="form-check-label" for="parking">
+                                                        Estacionamiento gratuito
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <!-- registro web -->
+                                            <div class="col-12 mb-2">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="checkInWeb" name="checkInWeb">
+                                                    <label class="form-check-label" for="checkInWeb">
+                                                        CheckIn Web
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <!-- agencia -->
+                                            <div class="mb-2">
+                                                <label for="agency" class="form-label">Agencia</label>
+                                                <select
+                                                    class="form-select <%= locals.errors && (errors.hotelId && 'is-invalid') %>"
+                                                    aria-label="Default select example" name="agency" id="agency">
+                                                    <option selected hidden value="">Seleccione...</option>
+                                                    <% agencies.forEach(agency=> { %>
+                                                        <option value="<%= agency.id %>" <%=locals.old &&
+                                                            (old.agency==agency.id && 'selected' )%> >
+                                                            <%= agency.name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                <small id="nameErrors" class="text-danger fs-6">
+                                                    <%= locals.errors && (errors.agency && errors.agency.msg) %>
+                                                </small>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between mt-5">
+                                                <button class="btn btn-dark" type="submit">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                            <small class="text-danger fs-6">
+                                                <%= locals.errors && (errors.images && errors.images.msg) %>
                                             </small>
                                         </div>
 
-                                        <div class="d-flex justify-content-between mt-5">
-                                            <div class="d-flex justify-content-between align-items-end">
-                                                <label for="images" class="btn btn-secondary"><i class="fa fa-plus"></i> imágenes</label>
-                                                <input hidden class="form-control" type="file" id="images" name="images" multiple/>
-                                            </div>
-                                            <button class="btn btn-dark" type="submit">
-                                                Guardar
-                                            </button>
-                                        </div>
-                                        <small class="text-danger fs-6">
-                                            <%= locals.errors && (errors.images && errors.images.msg) %>
-                                        </small>
-                                    </div>
-
-                                    </div>
-                                
-                                    </form>
                                 </div>
+
+                                </form>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </main>
 

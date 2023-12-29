@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const db = require("../database/models");
 const moment = require('moment');
 const toThousand = require('../utils/toThousand')
@@ -20,15 +21,13 @@ module.exports = {
     try {
       const keywords = req.query.keywords;
       const results = await db.Product.findAll({
+
         where: {
-          [db.Sequelize.Op.or]: [
-            { countrie: { [db.Sequelize.Op.iLike]: `%${keywords}%` } },
-            { '$categories.name$': { [db.Sequelize.Op.iLike]: `%${keywords}%` } }
-          ]
+          name:{
+            [Op.substring]: keywords
+          }
         },
-        include: [{
-          model: db.Categorie,
-        }]
+        include: ['countrie']
       });
 
       return res.render('results', {

@@ -6,7 +6,7 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', index );
 router.get('/search', search); 
-router.get('/dashboard/:categorie?',(req,res,next) => {console.log(req.params.categorie);next();},dashboard)
+router.get('/dashboard/:categorie?',(req,res,next) => {console.log(req.params.categorie);next();},checkAdmin,dashboard)
 router.get('/vuelos', vuelos)
 router.get('/hotels', hotels)
 

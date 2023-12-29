@@ -9,42 +9,32 @@
         <!-- header -->
         <%- include('./partials/header') %>
         <main>
-        <div class="contenedor" style="padding-bottom: 0.1rem;">
-            <label class="buscador">
-                <form action="/search" method="get">
-                    <input type="text" name="keywords" placeholder="Buscar...">
-                    <button type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-            </label>
-        </div>
-<section class="contenedor-card">
-    <% if (keywords && results.length) { %>
+<!-- <section class="contenedor-card">
+    <% if (keywords && products.length) { %>
         <h3>Hoteles recomendados para ti en <%= keywords %> </h3>
         <div class="row row-cols-1 row-cols-xl-2-1 row-cols-xxl-5 row-cols-lg-2 g-4 segunda-tarjeta-desktop">
-            <% results.forEach(product => { %>
+            <% products.forEach(product => { %>
                 <% if (product.category === "hotel") { %>
                     <div class="col mx-auto">
                         <%- include('./partials/cards-hotel-index', {
-                            ...product
+                            ...product.dataValues
                         }) %>
                     </div>
                 <% }%>
             <% }) %>
         </div>
     <% } %>
-</section>
+</section> -->
 
 <section class="contenedor-card">
-    <% if (keywords && results.length) { %>
-        <h3>Lugares recomendados para ti en <%= keywords %> </h3>
+    <% if (keywords && products.length) { %>
+        <h3>Destinos recomendados para ti en <%= keywords %> </h3>
         <div class="row row-cols-1 row-cols-xl-2-1 row-cols-xxl-5 row-cols-lg-2 g-4 segunda-tarjeta-desktop">
-            <% results.forEach(product => { %>
+            <% products.forEach(product => { %>
                 <% if (product.category !== "hotel") { %>
                     <div class="col mx-auto">
                         <%- include('./partials/cards-lugar-index', {
-                            ...product
+                            ...product.dataValues
                         }) %>
                     </div>
                 <% } %>
@@ -63,32 +53,32 @@
 </section>
 <!-- mobile -->
         <!-- Hoteles recomendados mobile slider -->
-        <section class="contenedor-primer-carrusel">
-            <% if (keywords && results.length) { %>
+        <!-- <section class="contenedor-primer-carrusel">
+            <% if (keywords && products.length) { %>
             <div class="swiper-container mySwiper">
                 <h3 class="text-center">Hoteles recomendados para ti en <%= keywords %> </h3>
                 <div class="swiper-wrapper d-flex justify-content-center">
-                    <% results.forEach(product => { %>
+                    <% products.forEach(product => { %>
                         <% if (product.category === "hotel") { %>
                         <%-include('./partials/cards-slider-hotel-mobile',{
-                            ...product
+                            ...product.dataValues
                         }) %>
                     <% }%>
                 <% }) %>
                 </div>
             </div>
             <% } %>
-        </section>
-        <!-- lugares recomendados mobile slider -->
+        </section> -->
+        <!-- destinos recomendados mobile slider -->
         <section class="contenedor-primer-carrusel">
-            <% if (keywords && results.length) { %>
+            <% if (keywords && products.length) { %>
             <div class="swiper-container mySwiper">
-                <h3 class="text-center">Lugares recomendados para ti en <%= keywords %> </h3>
+                <h3 class="text-center">Destinos recomendados para ti en <%= keywords %> </h3>
                 <div class="swiper-wrapper d-flex justify-content-center">
-                    <% results.forEach(product => { %>
-                        <% if (product.category === "pais") { %>
+                    <% products.forEach(product => { %>
+                        <% if (product.category !== "hotel") { %>
                         <%-include('./partials/cards-slider-lugar-mobile',{
-                            ...product
+                            ...product.dataValues
                         }) %>
                     <% }%>
                 <% }) %>

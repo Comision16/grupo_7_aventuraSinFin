@@ -2,8 +2,7 @@
 <html lang="en">
 <!-- head -->
 <%- include('./partials/head',{ title : 'Product Detail' }) %>
-
-    <body>
+    <body>    
         <!-- header -->
         <%- include('./partials/header') %>
             <!-- cuerpo de pagina -->
@@ -79,7 +78,7 @@
                                                     <span class="fs-1 fw-1">
                                                         <%= toThousand(fly.price) %>
                                                     </span> </p>
-                                                <button class="btn btn-primary btn-sm">Reservar</button>
+                                                <button type="button" onclick={showAlert} class="btn btn-primary btn-sm">Reservar</button>
                                             </div>
 
                                         </div>

@@ -11,10 +11,6 @@
     color: #000;
     text-align: center;
 }
-
-.main__login {
-    background-image: url("/images/jong-marshes-79mNMAvSORg-unsplash.jpg");
-}
 .login ul{
     list-style: none;
     display: flex;

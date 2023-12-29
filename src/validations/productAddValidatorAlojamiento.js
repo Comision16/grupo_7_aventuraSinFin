@@ -11,11 +11,4 @@ module.exports = [
         .notEmpty().withMessage('Debes indicar el precio'),
         check('agency')
         .notEmpty().withMessage('La agencia es requerida'),
-    check('images')
-        .custom((value, {req}) =>{
-            if(req.files.length){
-                return true
-            }
-            return false
-        }).withMessage('No has subido ninguna imagen')
 ]
