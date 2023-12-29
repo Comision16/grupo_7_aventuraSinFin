@@ -1,0 +1,140 @@
+<div class="modal fade" id="modalDetailHotel<%= id %>" tabindex="-1" aria-labelledby="modalDetailHotelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalDetailHotelLabel">
+                    <%= name %>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <main class="container">
+                    <div class="row mt-4">
+                        <div class="col-12 ">
+                            <div class="row ">
+                                <div class="col-12 col-md-5 col-lg-6">
+                                    <div class="card ">
+                                        <img class="card-img-top" width="100%" src="/images/<%= image || 'card1.png' %>"
+                                            alt="">
+                                        <img src="/images/<%= countrie.flag %>" width="80px" alt=""
+                                            style="position: absolute; top: 20px; left: 20px;">
+                                        <h3 style="position: absolute; top: 20px; right: 20px; text-shadow: 5px 5px 5px black;"
+                                            class="text-white">
+                                            <%= countrie.name %>
+                                        </h3>
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h3 class="card-title">
+                                                    <%= name %>
+                                                </h3>
+    
+                                                <div class="product__rating">
+                                                    ★★★★<span class="product__star-gray">★</span>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                <%= description %>
+                                            </p>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item d-flex  gap-3">
+                                                    <span><i class="fa-solid fa-xl fa-location-dot"></i></span>
+                                                    <span>
+                                                        <%= address %>
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item d-flex  gap-3">
+                                                    <span><i class="fa-solid fa-xl fa-phone"></i></span>
+                                                    <span>
+                                                        <%= phone %>
+                                                    </span>
+                                                </li>
+    
+                                            </ul>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-7 col-lg-6">
+    
+    
+                                    <% hotels.forEach(hotel=> { %>
+    
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-column align-items-center"
+                                                        style="height: 100px;">
+                                                        <img src="/images/<%= hotel.agency.image %>" alt="">
+                                                        <p class="text-secondary">
+                                                            <%= hotel.agency.name %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="d-flex flex-column align-items-end gap-3">
+                                                        <p class="fs-1 m-0">u$s <%= toThousand(hotel.price) %>
+                                                        </p>
+                                                        <p class="m-0 fs-4">
+                                                            <%= hotel.stay %>
+                                                        </p>
+                                                    </div>
+                                                </div>
+    
+    
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex gap-3 text-secondary">
+                                                        <div class="d-flex align-items-center gap-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cantidad pasajeros">
+                                                            
+                                                            <p><i class="fa-solid fa-user fa-xl"></i></p>
+                                                            <p class="fs-3">
+                                                                x<%= hotel.passengers %>
+                                                            </p>
+                                                        </div>
+                                                        <% if (hotel.wifi) { %>
+                                                            <div class="d-flex align-items-center gap-2"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Servicio de Wifi">
+                                                                <p><i class="fa-solid fa-wifi fa-xl"></i></p>
+                                                            </div>
+                                                            <% } %>
+    
+                                                                <% if (hotel.breakfast) { %>
+                                                                    <div class="d-flex align-items-center gap-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Desayuno incluído">
+                                                                        <p><i class="fa-solid fa-mug-saucer fa-xl"></i></p>
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <% if (hotel.parking) { %>
+                                                                            <div class="d-flex align-items-center gap-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Estacionamiento gratis">
+                                                                                <p><i
+                                                                                        class="fa-solid fa-square-parking fa-xl"></i>
+                                                                                </p>
+                                                                            </div>
+                                                                            <% } %>
+                                                                                <% if (hotel.checkInWeb) { %>
+                                                                                    <div
+                                                                                        class="d-flex align-items-center gap-2"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="CheckIn Web">
+                                                                                        <p><i
+                                                                                                class="fa-solid fa-computer fa-xl"></i>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                    <% } %>
+                                                    </div>
+                                                       
+                                                        <button class="btn btn-primary btn-sm">Reservar</button>
+    
+                                                </div>
+    
+    
+    
+    
+    
+    
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </main>
+            </div>
+        </div>
+    </div>
+</div>

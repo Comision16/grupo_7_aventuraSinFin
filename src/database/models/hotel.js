@@ -31,9 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     passengers: DataTypes.INTEGER,
     stay: DataTypes.STRING,
     breakfast: DataTypes.BOOLEAN,
-    parking: DataTypes.STRING,
+    parking: DataTypes.BOOLEAN,
     checkInWeb: DataTypes.BOOLEAN,
-    agencyId : DataTypes.BOOLEAN
+    agencyId : DataTypes.BOOLEAN,
+    wifi : DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Hotel',

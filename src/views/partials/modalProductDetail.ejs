@@ -1,53 +1,98 @@
-<div class="modal fade" id="modalDetail<%= id %>"
-    tabindex="-1"
-    aria-labelledby="modalDetailLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="modalDetail<%= id %>" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"
-                    id="modalDetailLabel">
-                    <%= hotel %> - <%= place %>
+                <h4 class="modal-title" id="modalDetailLabel">
+                    <%= name %>
                 </h4>
-                <button type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <img src="/images/<%= image %>"
-                            class="img-fluid"
-                            alt="<%= hotel %>">
-                    </div>
-                    <div class="col-12 col-md-8">
-                        <h2><%= price %></h2>
-                        <p><%= description %></p>
-                        <p><strong>Descuento:</strong> <%= discount %></p>
-                        <p><strong>Vuelos:</strong></p>
-                        <ul>
-                            <% flight.forEach(f => { %>
-                            <li><%= f %></li>
-                            <% }) %>
-                        </ul>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle"
-                                type="button" id="optionsDropdown<%= id %>"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Opciones
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="optionsDropdown<%= id %>">
-                                <li><a class="dropdown-item"
-                                        href="/products/detail/<%= id %>">Ver producto</a></li>
-                                <li><a class="dropdown-item"
-                                        href="/products/edit/<%= id %>">Editar producto</a></li>
-                                <li><a class="dropdown-item"
-                                        href="/products/delete/<%= id %>">Eliminar producto</a></li>
-                            </ul>
+                <main class="container">
+                    <div class="row mt-4">
+                        <div class="col-12 ">
+                            <div class="row ">
+
+                                <div class="col-12 col-md-5 col-lg-6">
+
+
+                                    <div class="card ">
+                                        <img class="card-img-top" width="100%" src="/images/<%= image || 'card1.png' %>"
+                                            alt="">
+                                        <div class="card-body">
+
+                                            <h3 class="card-title text-center">
+                                                <%= name %>
+                                            </h3>
+
+                                            <div class="product__rating text-center">
+                                                ★★★★<span class="product__star-gray">★</span>
+                                            </div>
+                                            <p class="small">
+                                                <%= description %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-7 col-lg-6">
+
+
+                                    <% flights.forEach(fly=> { %>
+
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-column align-items-center"
+                                                        style="height: 100px;">
+                                                        <img src="/images/<%= fly.airline.image %>" alt="">
+                                                        <p class="text-secondary">
+                                                            <%= fly.airline.name %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="d-flex flex-column align-items-end">
+                                                        <h4>
+                                                            <%= moment(fly.date).locale('es').format('DD/MM/YY') %>
+                                                        </h4>
+
+                                                        <div class="d-flex gap-3">
+                                                            <div class="d-flex flex-column align-items-center">
+                                                                <h3 class="m-0">
+                                                                    <%= fly.departure.slice(0,5) %>
+                                                                </h3>
+                                                                <small style="font-size: 10px;">Buenos Aires</small>
+                                                            </div>
+                                                            <h3> <i class="fa-solid fa-arrow-right-long"></i></h3>
+                                                            <div class="d-flex flex-column align-items-center">
+                                                                <h3 class="m-0">
+                                                                    <%= fly.arrival.slice(0,5) %>
+                                                                </h3>
+                                                                <small style="font-size: 10px;">
+                                                                    <%= city %>
+                                                                </small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p class="d-flex align-items-center gap-2">
+                                                        <span>u$s</span>
+                                                        <span class="fs-1 fw-1">
+                                                            <%= toThousand(fly.price) %>
+                                                        </span>
+                                                    </p>
+                                                    <button class="btn btn-primary btn-sm">Reservar</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                </main>
             </div>
         </div>
     </div>

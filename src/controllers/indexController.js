@@ -1,5 +1,6 @@
 const db = require("../database/models");
-
+const moment = require('moment');
+const toThousand = require('../utils/toThousand')
 module.exports = {
   index: async (req, res) => {
     try {
@@ -60,6 +61,8 @@ module.exports = {
   
       return res.render('dashboard', {
         products,
+        moment,
+        toThousand
       });
     } catch (error) {
       console.error(error);

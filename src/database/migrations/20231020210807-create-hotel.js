@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       checkInWeb: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
       },
       price: {
         type: Sequelize.INTEGER

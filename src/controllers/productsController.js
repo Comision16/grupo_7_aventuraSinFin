@@ -23,6 +23,8 @@ module.exports = {
   /* alojamientos */
   addAlojamiento: require('./products/addAlojamiento'),
   createAlojamiento : require('./products/createAlojamiento'),
+  editAlojamiento : require('./products/editAlojamiento'),
+
   
   /* paquetes */
   addPaquete: require('./products/addPaquete'),
